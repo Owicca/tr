@@ -1,0 +1,41 @@
+version: "3.8"
+services:
+  tr_db:
+    image: mariadb:10.8.3
+    container_name: tr_db
+    networks:
+      - tr_n
+    environment:
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+    ports:
+      - "127.0.0.1:${MYSQL_PORT}:3306"
+    volumes:
+      - ./db/:/var/lib/mysql
+  tr_adm:
+    image: adminer:latest
+    container_name: tr_adm
+    networks:
+      - tr_n
+    ports:
+      - "127.0.0.1:${ADM_PORT}:8080"
+    depends_on:
+      - tr_db
+  tr_web:
+    build:
+      context: ./config/web/
+      dockerfile: Dockerfile.dev
+    container_name: tr_web
+    networks:
+      - tr_n
+    ports:
+      - "127.0.0.1:${APP_PORT}:5900"
+    volumes:
+      - ./web/:/web/
+    depends_on:
+      - tr_db
+networks:
+  tr_n:
+    name: tr_n

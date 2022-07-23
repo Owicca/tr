@@ -13,3 +13,12 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+### configs:
+/.env
+
+### third-party:
+/db/*
+!/db/.gitkeep
+/web/logs/
+!/web/logs/.gitkeep

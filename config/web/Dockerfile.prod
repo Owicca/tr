@@ -1,0 +1,7 @@
+FROM golang:1.18.4-alpine
+
+WORKDIR /web/
+
+RUN apk update && apk add make
+
+ENTRYPOINT ["make", "run"]

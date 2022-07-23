@@ -1,0 +1,8 @@
+FROM golang:1.18.4-alpine
+
+WORKDIR /web/
+
+RUN apk update && apk add make
+RUN go install github.com/githubnemo/CompileDaemon@latest
+
+ENTRYPOINT ["make", "dev_reload"]

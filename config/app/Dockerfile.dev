@@ -2,7 +2,7 @@ FROM golang:1.18.4-alpine
 
 WORKDIR /app/
 
-RUN apk update && apk add make
+RUN apk update && apk add make git
 RUN go install github.com/githubnemo/CompileDaemon@latest
 
 ENTRYPOINT ["make", "dev_reload"]

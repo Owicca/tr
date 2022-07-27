@@ -17,7 +17,7 @@ import (
 	"gorm.io/gorm"
 	"upspin.io/errors"
 
-	"github.com/Owicca/tr/internal/models/utils"
+	"github.com/Owicca/tr/internal/models/util"
 	"github.com/owicca/tr/internal/models/logs"
 	msessions "github.com/owicca/tr/internal/models/sessions"
 
@@ -33,8 +33,6 @@ var (
 	_, filename, _, _ = runtime.Caller(0)
 )
 
-// Get config, db, logger
-// set up settings and create Server
 func init() {
 }
 
@@ -44,7 +42,7 @@ type Server struct {
 	Conn     *gorm.DB
 	Template *Template
 	Data     map[string]any
-	Errors   *utils.Errors
+	Errors   *util.Errors
 }
 
 func NewServer(
@@ -61,7 +59,7 @@ func NewServer(
 			Conn:         conn,
 			Template:     tmpl,
 			Data:         map[string]any{},
-			Errors:       utils.NewErrors(),
+			Errors:       util.NewErrors(),
 		}
 	}
 
@@ -153,6 +151,8 @@ func (s *Server) GenerateUrl(endpoint string) string {
 	return fmt.Sprintf("%s/%s/", s.Addr(), strings.Trim(endpoint, "/"))
 }
 
+// Get config, db, logger
+// set up settings and create Server
 func (s *Server) Run() {
 	addr := s.Addr()
 	msg := fmt.Sprintf("Running at %s", addr)
@@ -184,8 +184,8 @@ func (s *Server) ShutdownOnInterrupt(srv *http.Server) {
 			zap.L().Info(msg, zap.Int64("timestamp", time.Now().Unix()))
 		}
 		zap.L().Info("Close everything!", zap.Int64("timestamp", time.Now().Unix()))
-		defer loggerSync()
-		defer undo()
+		defer LoggerSync()
+		defer LUndo()
 		// s.Conn.Close()
 		close(idleConnsClosed)
 	}()

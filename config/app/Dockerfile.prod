@@ -1,6 +1,6 @@
 FROM golang:1.18.4-alpine
 
-WORKDIR /web/
+WORKDIR /app/
 
 RUN apk update && apk add make
 

@@ -1,0 +1,25 @@
+{
+  "HttpHost": "tr_web",
+  "HttpPort": "5900",
+  "DbHost": "tr_db",
+  "DbPort": "3306",
+  "DbName": "tr",
+  "DbUser": "user",
+  "DbPassword": "password",
+  "Logger": {
+    "level": "debug",
+    "encoding": "json",
+    "outputPaths": ["stdout", "./log/log.log"],
+    "errorOutputPaths": ["stderr", "./log/error.log"],
+    "encoderConfig": {
+      "messageKey": "message",
+      "levelKey": "level",
+      "levelEncoder": "lowercase"
+    }
+  },
+  "Sessions": {
+    "AuthenticationKey": "12345678901234567890123456789012",
+    "EncryptionKey": "12345678901234567890123456789012",
+    "Key": "SESSION"
+  },
+}

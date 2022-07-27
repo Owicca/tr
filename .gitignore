@@ -16,9 +16,10 @@
 
 ### configs:
 /.env
+/app/configs/config.json
 
 ### third-party:
 /db/*
 !/db/.gitkeep
-/web/logs/
-!/web/logs/.gitkeep
+/app/logs/
+!/app/logs/.gitkeep

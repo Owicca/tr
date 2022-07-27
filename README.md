@@ -6,5 +6,5 @@
 - docker
 
 ### Steps to run environment:
-- `cp .env.example .env`
+- `cp .env.sample .env`
 - `make up` OR `sudo docker compose up --force-recreate --remove-orphans`

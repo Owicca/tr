@@ -23,17 +23,17 @@ services:
       - "127.0.0.1:${ADM_PORT}:8080"
     depends_on:
       - tr_db
-  tr_web:
+  tr_app:
     build:
-      context: ./config/web/
+      context: ./config/app/
       dockerfile: Dockerfile.dev
-    container_name: tr_web
+    container_name: tr_app
     networks:
       - tr_n
     ports:
       - "127.0.0.1:${APP_PORT}:5900"
     volumes:
-      - ./web/:/web/
+      - ./app/:/app/
     depends_on:
       - tr_db
 networks:

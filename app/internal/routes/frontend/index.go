@@ -1,0 +1,4 @@
+package frontend
+
+func init() {
+}
